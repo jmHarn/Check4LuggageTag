@@ -2,15 +2,15 @@
 <OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides/1.0" xsi:type="MailApp">
   <Id>acb9c49b-1858-4106-8cb6-1100581a21ce</Id>
   <Version>1.0.0.0</Version>
-  <ProviderName>Contoso</ProviderName>
+  <ProviderName>HarnessIP</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
   <DisplayName DefaultValue="Check4LuggageTag"/>
-  <Description DefaultValue="A template to get started."/>
-  <IconUrl DefaultValue="https://localhost:3000/assets/icon-64.png"/>
-  <HighResolutionIconUrl DefaultValue="https://localhost:3000/assets/icon-128.png"/>
-  <SupportUrl DefaultValue="https://www.contoso.com/help"/>
+  <Description DefaultValue="Outlook WebAddin."/>
+  <IconUrl DefaultValue="https://jmharn.github.io/Check4LuggageTag/assets/icon-64.png"/>
+  <HighResolutionIconUrl DefaultValue="https://jmharn.github.io/Check4LuggageTag/assets/icon-128.png"/>
+  <SupportUrl DefaultValue="https://www.harnessip.com"/>
   <AppDomains>
-    <AppDomain>https://www.contoso.com</AppDomain>
+    <AppDomain>https://www.harnessip.com</AppDomain>
   </AppDomains>
   <Hosts>
     <Host Name="Mailbox"/>
@@ -24,7 +24,7 @@
     <Form xsi:type="ItemRead">
       <DesktopSettings>
         <!-- Update the DefaultValue of SourceLocation -->
-        <SourceLocation DefaultValue="https://jmharn.github.io/Check4LuggageTag/taskpane.html"/>
+        <SourceLocation DefaultValue="https://jmharn.github.io/Check4LuggageTag/src/taskpane/taskpane.html"/>
         <RequestedHeight>250</RequestedHeight>
       </DesktopSettings>
     </Form>
@@ -87,16 +87,24 @@
     </Hosts>
     <Resources>
       <bt:Images>
-        <bt:Image id="Icon.16x16" DefaultValue="https://localhost:3000/assets/icon-16.png"/>
-        <bt:Image id="Icon.32x32" DefaultValue="https://localhost:3000/assets/icon-32.png"/>
-        <bt:Image id="Icon.80x80" DefaultValue="https://localhost:3000/assets/icon-80.png"/>
+        <bt:Image id="Icon.16x16" DefaultValue="https://jmharn.github.io/Check4LuggageTag/assets/icon-16.png"/>
+        <bt:Image id="Icon.32x32" DefaultValue="https://jmharn.github.io/Check4LuggageTag/assets/icon-32.png"/>
+        <bt:Image id="Icon.80x80" DefaultValue="https://jmharn.github.io/Check4LuggageTag/assets/icon-80.png"/>
       </bt:Images>
       <bt:Urls>
         <!-- Update the DefaultValue of SourceLocation in the bt:Urls section -->
-        <bt:Url id="Commands.Url" DefaultValue="https://jmharn.github.io/Check4LuggageTag/commands.html"/>
-        <bt:Url id="Taskpane.Url" DefaultValue="https://jmharn.github.io/Check4LuggageTag/taskpane.html"/>
+        <bt:Url id="Commands.Url" DefaultValue="https://jmharn.github.io/Check4LuggageTag/src/commands/commands.html"/>
+        <bt:Url id="Taskpane.Url" DefaultValue="https://jmharn.github.io/Check4LuggageTag/src/taskpane/taskpane.html"/>
       </bt:Urls>
       <bt:ShortStrings>
-        <bt:String id="GroupLabel" DefaultValue="Contoso Add-in"/>
+        <bt:String id="GroupLabel" DefaultValue="HarnessIP Add-in"/>
         <bt:String id="TaskpaneButton.Label" DefaultValue="Show Taskpane"/>
-        <bt:String id="ActionButton.Label"
+        <bt:String id="ActionButton.Label" DefaultValue="Perform an action"/>
+      </bt:ShortStrings>
+      <bt:LongStrings>
+        <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Opens a pane displaying all available properties."/>
+        <bt:String id="ActionButton.Tooltip" DefaultValue="Perform an action when clicked."/>
+      </bt:LongStrings>
+    </Resources>
+  </VersionOverrides>
+</OfficeApp>
