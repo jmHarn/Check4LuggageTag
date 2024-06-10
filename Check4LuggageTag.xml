@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="MailApp">
 	<Id>e01d8e02-8d7c-4d2a-910e-52f65e9c3f45</Id>
-	<Version>1.0.0.0</Version>
+	<Version>1.1.0.0</Version>
 	<ProviderName>HarnessIP</ProviderName>
 	<DefaultLocale>en-US</DefaultLocale>
 	<DisplayName DefaultValue="Check for Luggage Tag" />
