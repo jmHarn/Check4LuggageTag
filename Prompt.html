@@ -1,19 +1,12 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>Check before Sending</title>
-    <script>
-        function sendMessage(message) {
-            Office.context.ui.messageParent(message);
-        }
-    </script>
+    <title>Prompt</title>
+    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+    <script src="https://jmharn.github.io/Check4LuggageTag/Prompt.js" defer></script>
 </head>
 <body>
-    <div>
-        <p>***WARNING***</p>
-        <p>This message appears to have a luggage tag and might be filed to the DM automatically if you send this email. Are you sure you wish to send this message?</p>
-        <button onclick="sendMessage('yes')">Yes</button>
-        <button onclick="sendMessage('no')">No</button>
-    </div>
+    <button id="yesButton">Yes</button>
+    <button id="noButton">No</button>
 </body>
 </html>
