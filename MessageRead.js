@@ -1,6 +1,7 @@
 ﻿console.log("MessageRead.js is being executed...");
 
 Office.onReady(function (info) {
+    console.log("Office.onReady is being called...");
     if (info.host === Office.HostType.Outlook) {
         Office.context.mailbox.addHandlerAsync(Office.EventType.ItemSend, onItemSend);
     }
