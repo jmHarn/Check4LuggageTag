@@ -1,10 +1,13 @@
-﻿Office.onReady(function (info) {
+﻿console.log("MessageRead.js is being executed...");
+
+Office.onReady(function (info) {
     if (info.host === Office.HostType.Outlook) {
         Office.context.mailbox.addHandlerAsync(Office.EventType.ItemSend, onItemSend);
     }
 });
 
 function onItemSend(eventArgs) {
+    console.log("onItemSend function is invoked...");
     const item = eventArgs.item;
     item.subject.getAsync({ asyncContext: eventArgs }, function (asyncResult) {
         if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
