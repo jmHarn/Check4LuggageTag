@@ -3,7 +3,9 @@
 Office.onReady(function (info) {
     console.log("Office.onReady is being called...");
     if (info.host === Office.HostType.Outlook) {
-        Office.context.mailbox.addHandlerAsync(Office.EventType.ItemSend, onItemSend);
+        // Add your code specific to Outlook here
+    } else {
+        console.log("Host is not Outlook. Current host:", info.host);
     }
 });
 
