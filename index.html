@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Office JavaScript API -->
+    <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+</head>
+
+<body>
+    <h1>Check Subject Line</h1>
+    <div id="message"></div>
+    <button id="sendButton" style="display:none;">Send Email</button>
+    <button id="cancelButton" style="display:none;">Cancel</button>
+
+    <script>
+        Office.onReady((info) => {
+            if (info.host === Office.HostType.Outlook) {
+                Office.context.mailbox.item.subject.getAsync(function(result) {
+                    if (result.status === Office.AsyncResultStatus.Succeeded) {
+                        var subject = result.value;
+                        checkSubject(subject);
+                    } else {
+                        document.getElementById("message").innerText = "Unable to retrieve subject.";
+                    }
+                });
+
+                document.getElementById("sendButton").onclick = sendEmail;
+                document.getElementById("cancelButton").onclick = cancelEmail;
+            }
+        });
+
+        function checkSubject(subject) {
+            var tags = ["[HDP-stl_legal.FID", "[HDP-troy_legal.FID", "[HDP-dc_legal.FID", "[HDP-firm_admin.FID"];
+            var containsTag = tags.some(tag => subject.includes(tag));
+            if (containsTag) {
+                document.getElementById("message").innerText = "The subject contains a specific tag. Do you want to send the email?";
+                document.getElementById("sendButton").style.display = "inline";
+                document.getElementById("cancelButton").style.display = "inline";
+            } else {
+                document.getElementById("message").innerText = "The subject does not contain any specific tags.";
+            }
+        }
+
+        function sendEmail() {
+            Office.context.mailbox.item.saveAsync(function(result) {
+                if (result.status === Office.AsyncResultStatus.Succeeded) {
+                    Office.context.ui.closeContainer();
+                } else {
+                    document.getElementById("message").innerText = "Unable to send email.";
+                }
+            });
+        }
+
+        function cancelEmail() {
+            Office.context.ui.closeContainer();
+        }
+    </script>
+
+    <!-- The following image URL tracks diagnostic data for this sample add-in. Please remove the image tag if you reuse this sample in your own code project. -->
+    <img src="https://pnptelemetry.azurewebsites.net/pnp-officeaddins/samples/outlook-add-in-hello-world-run" />
+</body>
+
+</html>
