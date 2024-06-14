@@ -13,33 +13,24 @@
     <script>
         Office.onReady((info) => {
             if (info.host === Office.HostType.Outlook) {
-                // Register the ItemSend event handler
-                Office.context.mailbox.item.addHandlerAsync(
-                    Office.EventType.ItemSend,
-                    checkSubject
-                );
+                checkSubject();
             }
         });
 
-        function checkSubject(event) {
+        function checkSubject() {
             Office.context.mailbox.item.subject.getAsync(function(result) {
                 if (result.status === Office.AsyncResultStatus.Succeeded) {
                     var subject = result.value;
                     var tags = ["[HDP-stl_legal.FID", "[HDP-troy_legal.FID", "[HDP-dc_legal.FID", "[HDP-firm_admin.FID"];
                     var containsTag = tags.some(tag => subject.includes(tag));
                     if (containsTag) {
-                        var userConfirmed = confirm("The subject contains a specific tag. Do you want to send the email?");
-                        if (userConfirmed) {
-                            event.completed({ allowEvent: true });
-                        } else {
-                            event.completed({ allowEvent: false });
-                        }
+                        document.getElementById("message").innerText = "Warning: The subject contains a specific tag.";
+                        alert("The subject contains a specific tag.");
                     } else {
-                        event.completed({ allowEvent: true });
+                        document.getElementById("message").innerText = "The subject does not contain any specific tags.";
                     }
                 } else {
                     document.getElementById("message").innerText = "Unable to retrieve subject.";
-                    event.completed({ allowEvent: true });
                 }
             });
         }
