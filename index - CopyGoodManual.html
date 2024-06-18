@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Office JavaScript API -->
+    <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+</head>
+
+<body>
+    <h1>Check Subject Line</h1>
+    <div id="message"></div>
+
+    <script>
+        Office.onReady((info) => {
+            if (info.host === Office.HostType.Outlook) {
+                checkSubject();
+            }
+        });
+
+        function checkSubject() {
+            Office.context.mailbox.item.subject.getAsync(function(result) {
+                if (result.status === Office.AsyncResultStatus.Succeeded) {
+                    var subject = result.value;
+                    var tags = ["[HDP-stl_legal.FID", "[HDP-troy_legal.FID", "[HDP-dc_legal.FID", "[HDP-firm_admin.FID"];
+                    var containsTag = tags.some(tag => subject.includes(tag));
+                    if (containsTag) {
+                        document.getElementById("message").innerText = "Warning: The subject contains a specific tag.";
+                        alert("The subject contains a specific tag.");
+                    } else {
+                        document.getElementById("message").innerText = "The subject does not contain any specific tags.";
+                    }
+                } else {
+                    document.getElementById("message").innerText = "Unable to retrieve subject.";
+                }
+            });
+        }
+    </script>
+
+    <!-- The following image URL tracks diagnostic data for this sample add-in. Please remove the image tag if you reuse this sample in your own code project. -->
+    <img src="https://pnptelemetry.azurewebsites.net/pnp-officeaddins/samples/outlook-add-in-hello-world-run" />
+</body>
+
+</html>
